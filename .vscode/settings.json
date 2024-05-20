@@ -1,0 +1,11 @@
+{
+    "objectscript.conn": {
+        "server": "iris-local",
+        "ns": "SERGIO",
+        "active": true,
+        "links": {
+            "$(terminal) WebTerminal": "${serverUrl}/terminal/?ns=${ns}${serverAuth}",
+            "SOAP Wizard": "${serverUrl}/isc/studio/templates/%25ZEN.Template.AddInWizard.SOAPWizard.cls?Namespace=${namespace}${serverAuth}"
+        }
+    }
+}
