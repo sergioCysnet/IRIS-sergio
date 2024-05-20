@@ -1,15 +1,15 @@
 Class cysnet.sergio.msg.ObtenerPersonaResponse Extends Ens.Response
 {
 
-Property nombre As %String;
+Property nombre As %String(MAXLEN = "");
 
-Property apellidos As %String;
+Property apellidos As %String(MAXLEN = "");
 
-Property direccion As %String;
+Property direccion As %String(MAXLEN = "");
 
 Property codPostal As %Integer;
 
-Property mensaje As %String;
+Property mensaje As %String(MAXLEN = "");
 
 Storage Default
 {
