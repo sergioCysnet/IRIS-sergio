@@ -9,7 +9,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <sequence xend='200' yend='600' >
 <if name='¿ID &gt; 0?' condition='request.idPersona &gt; 0' xpos='200' ypos='250' xend='200' yend='500' >
 <true>
-<call name='Obtener Persona' target='DBCache' async='0' xpos='200' ypos='400' >
+<call name='Obtener Persona' target='DBCache' async='0' xpos='470' ypos='400' >
 <request type='cysnet.sergio.msg.ObtenerPersonaRequest' >
 <assign property="callrequest.idPersona" value="request.idPersona" action="set" />
 </request>
@@ -19,11 +19,13 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <assign property="response.direccion" value="callresponse.direccion" action="set" />
 <assign property="response.codPostal" value="callresponse.codPostal" action="set" />
 <assign property="response.mensaje" value="callresponse.mensaje" action="set" />
+<assign property="response.exito" value="callresponse.exito" action="set" />
+<assign property="response.error" value="callresponse.error" action="set" />
 </response>
 </call>
 </true>
 <false>
-<assign name="Mensaje error" property="response.mensaje" value="&quot;El ID debe ser mayor a 0&quot;" action="set" xpos='470' ypos='400' />
+<assign name="Mensaje error" property="response.mensaje" value="&quot;El ID debe ser mayor a 0&quot;" action="set" xpos='200' ypos='400' />
 </false>
 </if>
 </sequence>

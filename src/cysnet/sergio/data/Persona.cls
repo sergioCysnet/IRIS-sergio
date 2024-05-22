@@ -15,14 +15,15 @@ Property codPostal As %Integer(POPSPEC = "USZip()");
 
 ClassMethod altaPersona(nombre As %String, apellidos As %String, sexo As %String, fechaNacimiento As %String) As %Status
 {
-    
+    #dim sc As %Status = $$$OK
+
     #dim id AS %Integer = 0
     write sexo
     if ((sexo '= "M")&&(sexo '= "F")){
         write "Sexo no válido"
         write !,"-1"
 
-        quit $$$OK
+        quit sc
     }
 
     set p= ##class(cysnet.sergio.data.Persona).%New()
@@ -35,11 +36,12 @@ ClassMethod altaPersona(nombre As %String, apellidos As %String, sexo As %String
 
     write p.%Id()
 
-    quit $$$OK
+    quit sc
 }
 
 ClassMethod modificarPersona(id As %Integer, nombre As %String, apellidos As %String, sexo As %String, fechaNacimiento As %String) As %Integer
 {
+    #dim sc As %Status = $$$OK
     #dim existe As %Integer  = 0
 
     &sql(SELECT 1 INTO :existe FROM cysnet_sergio_data.Persona WHERE id = :id)
@@ -47,13 +49,13 @@ ClassMethod modificarPersona(id As %Integer, nombre As %String, apellidos As %St
         write "La persona con ID "_id_" no existe"
         write !,"-1"
 
-        quit $$$OK
+        quit sc
     }
     if ((sexo '= "M")&&(sexo '= "F")){
         write "Sexo no válido"
         write !,"-1"
 
-        quit $$$OK
+        quit sc
     }
 
     set p= ##class(cysnet.sergio.data.Persona).%OpenId(id)
@@ -66,36 +68,38 @@ ClassMethod modificarPersona(id As %Integer, nombre As %String, apellidos As %St
 
     write p.%Id()
     
-    quit $$$OK
+    quit sc
 }
 
 ClassMethod eliminarPersona(id As %Integer) As %Status
 {
+    #dim sc As %Status = $$$OK
     #dim existe = 0
 
     &sql(SELECT 1 INTO :existe FROM cysnet_sergio_data.Persona WHERE id = :id)
     if (existe '= 1){
         write "La persona con ID "_id_" no existe"
 
-        quit $$$OK
+        quit sc
     }
 
     &sql(DELETE FROM cysnet_sergio_data.Persona WHERE id = :id)
 
     write "Persona con ID "_id_" eliminada correctamente"
 
-    quit $$$OK
+    quit sc
 }
 
 ClassMethod mostrarPersona(id As %Integer) As %Status
 {
+    #dim sc As %Status = $$$OK
     #dim existe As %Integer = 0
 
     &sql(SELECT 1 INTO :existe FROM cysnet_sergio_data.Persona WHERE id = :id)
 
     if (existe '= 1){
         write !,"La persona con ID "_id_" no existe"
-        quit $$$OK
+        quit sc
     }
     
     set p= ##class(cysnet.sergio.data.Persona).%OpenId(id)
@@ -105,7 +109,7 @@ ClassMethod mostrarPersona(id As %Integer) As %Status
     write !,p.sexo
     write !,$ZDATE(p.fechaNacimiento,4)
 
-    quit $$$OK
+    quit sc
 }
 
 Storage Default
@@ -135,8 +139,47 @@ Storage Default
 </Data>
 <DataLocation>^cysnet.sergio.data.PersonaD</DataLocation>
 <DefaultData>PersonaDefaultData</DefaultData>
+<ExtentSize>12</ExtentSize>
 <IdLocation>^cysnet.sergio.data.PersonaD</IdLocation>
 <IndexLocation>^cysnet.sergio.data.PersonaI</IndexLocation>
+<Property name="%%CLASSNAME">
+<AverageFieldSize>2</AverageFieldSize>
+<OutlierSelectivity>.999999:</OutlierSelectivity>
+<Selectivity>0.0001%</Selectivity>
+</Property>
+<Property name="%%ID">
+<AverageFieldSize>3</AverageFieldSize>
+<Selectivity>1</Selectivity>
+</Property>
+<Property name="apellidos">
+<AverageFieldSize>8.08</AverageFieldSize>
+<Selectivity>8.3333%</Selectivity>
+</Property>
+<Property name="codPostal">
+<AverageFieldSize>2.17</AverageFieldSize>
+<OutlierSelectivity>.916667:</OutlierSelectivity>
+<Selectivity>8.3333%</Selectivity>
+</Property>
+<Property name="direccion">
+<AverageFieldSize>3.25</AverageFieldSize>
+<OutlierSelectivity>.916667:</OutlierSelectivity>
+<Selectivity>8.3333%</Selectivity>
+</Property>
+<Property name="fechaNacimiento">
+<AverageFieldSize>8.5</AverageFieldSize>
+<Selectivity>9.0909%</Selectivity>
+</Property>
+<Property name="nombre">
+<AverageFieldSize>7.25</AverageFieldSize>
+<Selectivity>8.3333%</Selectivity>
+</Property>
+<Property name="sexo">
+<AverageFieldSize>2.83</AverageFieldSize>
+<Selectivity>33.3333%</Selectivity>
+</Property>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
 <StreamLocation>^cysnet.sergio.data.PersonaS</StreamLocation>
 <Type>%Storage.Persistent</Type>
 }

@@ -26,6 +26,20 @@ XData ProductionDefinition
   </Item>
   <Item Name="HL7RoutingProcess" Category="" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">cysnet.sergio.rules.HL7RoutingRule</Setting>
+    <Setting Target="Host" Name="ResponseFrom">MiServicioSoap</Setting>
+  </Item>
+  <Item Name="MiServicioSoap" Category="" ClassName="cysnet.sergio.wc.MiServicio.bo.MiServicioSoap" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="WebServiceURL">http://localhost:1981/csp/healthshare/sergio/cysnet.sergio.ws.MiServicio.cls</Setting>
+    <Setting Target="Host" Name="AlertOnError">1</Setting>
+  </Item>
+  <Item Name="Ens.Alert" Category="" ClassName="EnsLib.EMail.AlertOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="IncludeDetails">1</Setting>
+    <Setting Target="Adapter" Name="Credentials">CuentaGmail</Setting>
+    <Setting Target="Adapter" Name="From">sergiokatas@gmail.com</Setting>
+    <Setting Target="Adapter" Name="Recipient">sergio@cysnet.es</Setting>
+    <Setting Target="Adapter" Name="SMTPPort">587</Setting>
+    <Setting Target="Adapter" Name="SMTPServer">smtp.gmail.com</Setting>
+    <Setting Target="Adapter" Name="SSLConfig">ISC.FeatureTracker.SSL.Config*</Setting>
   </Item>
 </Production>
 }
