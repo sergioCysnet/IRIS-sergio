@@ -52,19 +52,18 @@ Method crearPersona(pRequest As cysnet.sergio.msg.CrearPersonaRequest, Output pR
     set pResponse.exito = 1
     
     try {
-        &sql(SELECT ID INTO :idPersona FROM cysnet_sergio_data.Persona WHERE nombre = :pRequest.nombre AND apellidos = :pRequest.apellidos)
-        if (SQLCODE = 0) {
-            if (idPersona > 0) {
-                set pResponse.mensaje = "La persona "_pRequest.nombre_" "_pRequest.apellidos_" ya existe."
-            } else{
-                &sql(INSERT INTO cysnet_sergio_data.Persona (nombre, apellidos, direccion, codPostal) VALUES (:pRequest.nombre, :pRequest.apellidos, :pRequest.direccion, :pRequest.codPostal))
-
+        &sql(SELECT ID INTO :idPersona FROM cysnet_sergio_data.Persona WHERE nombre = :pRequest.nombre AND apellidos = :pRequest.apellidos)        
+        if (idPersona > 0) {
+            set pResponse.mensaje = "La persona "_pRequest.nombre_" "_pRequest.apellidos_" ya existe."
+        } else{
+            &sql(INSERT INTO cysnet_sergio_data.Persona (nombre, apellidos, direccion, codPostal) VALUES (:pRequest.nombre, :pRequest.apellidos, :pRequest.direccion, :pRequest.codPostal))
+            if (SQLCODE = 0) {
                 set pResponse.mensaje = "La persona "_pRequest.nombre_" "_pRequest.apellidos_" ha sido creada correctamente."
+            } else {
+                set pResponse.exito = 0
+                set pResponse.error = $System.SQL.Functions.SQLCODE(SQLCODE)
             }
-        } else {
-            set pResponse.exito = 0
-            set pResponse.error = $System.SQL.Functions.SQLCODE(SQLCODE)
-        }
+        }        
     } catch (err) {
         // Si ha ocurrido un error, crear el objeto Status:
         if (err.%ClassName(1)="common.err.exception") && ($$$ISERR(err.status)) {

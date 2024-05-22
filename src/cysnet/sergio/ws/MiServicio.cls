@@ -38,7 +38,7 @@ Method crearPersona(nombre As %String, apellidos As %String, direccion As %Strin
 	set req.direccion = direccion
 	set req.codPostal = codPostal
 
-	do ..SendRequestSync("DBCache", req, .rsp)
+	do ..SendRequestSync("MiProceso", req, .rsp)
 	quit rsp
 }
 
