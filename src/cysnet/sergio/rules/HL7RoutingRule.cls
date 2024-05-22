@@ -13,7 +13,7 @@ XData RuleDefinition [ XMLNamespace = "http://www.intersystems.com/rule" ]
 <constraint name="docCategory" value="2.5"></constraint>
 <constraint name="docName" value="ADT_A01"></constraint>
 <when condition="1" comment="">
-<send transform="cysnet.sergio.dtl.ADTA01ToCrearPersonaReq" target=",DBCache"></send>
+<send transform="cysnet.sergio.dtl.ADTA01ToCrearPersonaReq" target=",MiServicioSoap"></send>
 </when>
 </rule>
 </ruleSet>
