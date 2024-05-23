@@ -51,6 +51,16 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="SSLConfig">ISC.FeatureTracker.SSL.Config*</Setting>
     <Setting Target="Adapter" Name="SSLCheckServerIdentity">0</Setting>
   </Item>
+  <Item Name="MySQLOp" Category="" ClassName="cysnet.sergio.bo.MySQLOp" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="Credentials">MySQL</Setting>
+    <Setting Target="Adapter" Name="DSN">jdbc:mysql://mysql:3306/iris?useSSL=false</Setting>
+    <Setting Target="Adapter" Name="JDBCDriver">com.mysql.jdbc.Driver</Setting>
+    <Setting Target="Adapter" Name="JGService">JavaGateway</Setting>
+  </Item>
+  <Item Name="JavaGateway" Category="" ClassName="EnsLib.JavaGateway.Service" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="ClassPath">/shared/mysql/mysql-connector-java-5.1.49.jar</Setting>
+    <Setting Target="Host" Name="JavaHome">/usr/lib/jvm/temurin-8-jdk-arm64</Setting>
+  </Item>
 </Production>
 }
 
