@@ -20,6 +20,10 @@ Property codPostal As %Integer(XMLNAME = "codPostal");
 
 Property mensaje As %String(MAXLEN = "", XMLNAME = "mensaje");
 
+Property exito As %Boolean(XMLNAME = "exito");
+
+Property error As %String(MAXLEN = "", XMLNAME = "error");
+
 Storage Default
 {
 <Data name="ObtenerPersonaResponse1State">
@@ -38,6 +42,12 @@ Storage Default
 </Value>
 <Value name="5">
 <Value>mensaje</Value>
+</Value>
+<Value name="6">
+<Value>exito</Value>
+</Value>
+<Value name="7">
+<Value>error</Value>
 </Value>
 </Data>
 <State>ObtenerPersonaResponse1State</State>

@@ -12,12 +12,22 @@ Parameter XMLTYPE = "CrearPersonaResponse";
 
 Property mensaje As %String(MAXLEN = "", XMLNAME = "mensaje");
 
+Property exito As %Boolean(XMLNAME = "exito");
+
+Property error As %String(MAXLEN = "", XMLNAME = "error");
+
 Storage Default
 {
 <Data name="CrearPersonaResponse1State">
 <Subscript>"CrearPersonaResponse1"</Subscript>
 <Value name="1">
 <Value>mensaje</Value>
+</Value>
+<Value name="2">
+<Value>exito</Value>
+</Value>
+<Value name="3">
+<Value>error</Value>
 </Value>
 </Data>
 <State>CrearPersonaResponse1State</State>

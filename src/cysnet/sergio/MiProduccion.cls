@@ -61,6 +61,21 @@ XData ProductionDefinition
     <Setting Target="Host" Name="ClassPath">/shared/mysql/mysql-connector-java-5.1.49.jar</Setting>
     <Setting Target="Host" Name="JavaHome">/usr/lib/jvm/temurin-8-jdk-arm64</Setting>
   </Item>
+  <Item Name="ProcesoAltaPaciente" Category="" ClassName="cysnet.sergio.bp.ProcesoAltaPaciente" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="InSQL" Category="" ClassName="cysnet.sergio.bs.InSQL" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="Credentials">MySQL</Setting>
+    <Setting Target="Adapter" Name="DSN">jdbc:mysql://mysql:3306/iris?useSSL=false</Setting>
+    <Setting Target="Adapter" Name="DeleteQuery">UPDATE AltaPaciente 
+SET IndRealizado = 1 
+WHERE ID = ?</Setting>
+    <Setting Target="Adapter" Name="JDBCDriver">com.mysql.jdbc.Driver</Setting>
+    <Setting Target="Adapter" Name="JGService">JavaGateway</Setting>
+    <Setting Target="Adapter" Name="Query">SELECT ID, IdPersona, FechaAlta 
+FROM AltaPaciente 
+WHERE IndRealizado = 0 
+ORDER BY ID</Setting>
+  </Item>
 </Production>
 }
 
