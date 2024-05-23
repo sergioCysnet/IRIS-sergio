@@ -41,6 +41,16 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="SMTPServer">smtp.gmail.com</Setting>
     <Setting Target="Adapter" Name="SSLConfig">ISC.FeatureTracker.SSL.Config*</Setting>
   </Item>
+  <Item Name="EnviarEmail" Category="" ClassName="cysnet.sergio.bo.EnviarEmail" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="AlertOnError">1</Setting>
+    <Setting Target="Adapter" Name="Credentials">CuentaGmail</Setting>
+    <Setting Target="Adapter" Name="From">sergiokatas@gmail.com</Setting>
+    <Setting Target="Adapter" Name="Recipient">sergiopeje@gmail.es</Setting>
+    <Setting Target="Adapter" Name="SMTPPort">587</Setting>
+    <Setting Target="Adapter" Name="SMTPServer">smtp.gmail.com</Setting>
+    <Setting Target="Adapter" Name="SSLConfig">ISC.FeatureTracker.SSL.Config*</Setting>
+    <Setting Target="Adapter" Name="SSLCheckServerIdentity">0</Setting>
+  </Item>
 </Production>
 }
 
