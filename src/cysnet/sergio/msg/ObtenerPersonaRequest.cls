@@ -1,4 +1,4 @@
-Class cysnet.sergio.msg.ObtenerPersonaRequest Extends Ens.Request
+Class cysnet.sergio.msg.ObtenerPersonaRequest Extends (Ens.Request, %JSON.Adaptor)
 {
 
 Property idPersona As %Integer;

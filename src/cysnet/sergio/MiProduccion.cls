@@ -79,6 +79,8 @@ ORDER BY ID</Setting>
   <Item Name="OutFileHL7" Category="" ClassName="EnsLib.HL7.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="FilePath">/shared/HL7/salida-HL7/</Setting>
   </Item>
+  <Item Name="InRest" Category="" ClassName="cysnet.sergio.bs.InRest" PoolSize="0" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
 </Production>
 }
 

@@ -1,4 +1,4 @@
-Class cysnet.sergio.msg.CrearPersonaResponse Extends Ens.Response
+Class cysnet.sergio.msg.CrearPersonaResponse Extends (Ens.Response, %JSON.Adaptor)
 {
 
 Property mensaje As %String(MAXLEN = "");

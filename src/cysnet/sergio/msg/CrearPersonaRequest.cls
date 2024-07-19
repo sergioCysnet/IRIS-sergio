@@ -1,4 +1,4 @@
-Class cysnet.sergio.msg.CrearPersonaRequest Extends Ens.Request
+Class cysnet.sergio.msg.CrearPersonaRequest Extends (Ens.Request, %JSON.Adaptor)
 {
 
 Property nombre As %String(MAXLEN = "");

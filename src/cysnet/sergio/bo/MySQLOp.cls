@@ -21,7 +21,7 @@ Method obtenerPersona(pRequest As cysnet.sergio.msg.ObtenerPersonaRequest, Outpu
         #dim rs As EnsLib.SQL.GatewayResultSet
 
         set rs = ##class(EnsLib.SQL.GatewayResultSet).%New()
-        set sql = "SELECT Nombre, Apellidos FROM Persona WHERE ID = ?"
+        set sql = "SELECT Nombre, Apellidos, Direccion, CodigoPostal FROM Persona WHERE ID = ?"
 
         set sc = ..Adapter.ExecuteQuery(.rs, sql, pRequest.idPersona)
         if ($$$ISOK(sc)) {
@@ -29,6 +29,8 @@ Method obtenerPersona(pRequest As cysnet.sergio.msg.ObtenerPersonaRequest, Outpu
                 quit:$$$ISERR(sc)
                 set pResponse.nombre = rs.Get("Nombre")
                 set pResponse.apellidos = rs.Get("Apellidos")
+                set pResponse.direccion = rs.Get("Direccion")
+                set pResponse.codPostal = rs.Get("CodigoPostal")
             }
         }
     } catch (err) {
@@ -59,9 +61,9 @@ Method crearPersona(pRequest As cysnet.sergio.msg.CrearPersonaRequest, Output pR
     try {
         #dim numRows As %Integer = 0
 
-        set sql = "INSERT INTO Persona (Nombre, Apellidos) VALUES (?, ?)"
+        set sql = "INSERT INTO Persona (Nombre, Apellidos, Direccion, CodigoPostal) VALUES (?, ?, ?, ?)"
 
-        set sc = ..Adapter.ExecuteUpdate(.numRows, sql, pRequest.nombre, pRequest.apellidos)
+        set sc = ..Adapter.ExecuteUpdate(.numRows, sql, pRequest.nombre, pRequest.apellidos, pRequest.direccion, pRequest.codPostal)
         if ($$$ISOK(sc)) {
             if (numRows = 0) {
                 set pResponse.exito = 0
